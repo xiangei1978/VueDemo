@@ -134,11 +134,12 @@ export default {
         ["myChart12", 10],
         ["myChart13", 10],
         ["myChart14", 10]
-      ]
+      ],
+      unwatch: null
     };
   },
   mounted() {
-    this.$watch(
+    this.unwatch = this.$watch(
       function() {
         return this.loadingIndexNum == 0;
       },
@@ -159,20 +160,33 @@ export default {
             console.log(
               "正在准备渲染   " + this.loadingArray[i][0] + ",tempi=" + tempi
             );
+
             let tempname = this.loadingArray[i][0];
+            let randomNum = parseInt(100 + 1000 * Math.random());
             if (tempi % 2 == 1) {
               // this.draw(tempchart);
-              this.goSleep(300).then(() => {
+
+              this.goSleep(randomNum).then(() => {
                 this.draw(tempname);
               });
             } else {
-              this.goSleep(300).then(() => {
+              this.goSleep(randomNum).then(() => {
                 this.draw2(tempname);
               });
             }
           }
           console.log("准备删除   " + delnum + "个");
-          this.loadingArray.splice(0, delnum);
+          if (delnum == 0) {
+            this.loadingArray.splice(0, 1);
+          } else {
+            this.loadingArray.splice(0, delnum);
+          }
+          console.log("数组还有   " + this.loadingArray.length + "个");
+          console.log("this.loadingArray：   " + this.loadingArray);
+          if (this.loadingArray.length == 0) {
+            console.log("unwatch   ");
+            this.unwatch();
+          }
         }
       }
     );
