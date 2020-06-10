@@ -160,13 +160,15 @@ export default {
               "正在准备渲染   " + this.loadingArray[i][0] + ",tempi=" + tempi
             );
             let tempname = this.loadingArray[i][0];
+            let randomNum = parseInt(100 + 1000 * Math.random());
             if (tempi % 2 == 1) {
               // this.draw(tempchart);
-              this.goSleep(300).then(() => {
+
+              this.goSleep(randomNum).then(() => {
                 this.draw(tempname);
               });
             } else {
-              this.goSleep(300).then(() => {
+              this.goSleep(randomNum).then(() => {
                 this.draw2(tempname);
               });
             }
