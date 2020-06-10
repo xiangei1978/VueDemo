@@ -3,7 +3,10 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/pie">Pie</router-link>|
-      <router-link to="/about">About</router-link>
+      <router-link to="/line">line</router-link>|
+      <router-link to="/funnel">funnel</router-link>|
+      <router-link to="/flowtest">FlowTest</router-link>
+      <!-- <router-link to="/about">About</router-link> -->
     </div>
     <router-view />
   </div>
