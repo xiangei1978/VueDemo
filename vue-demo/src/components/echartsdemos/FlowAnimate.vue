@@ -159,6 +159,7 @@ export default {
             console.log(
               "正在准备渲染   " + this.loadingArray[i][0] + ",tempi=" + tempi
             );
+
             let tempname = this.loadingArray[i][0];
             let randomNum = parseInt(100 + 1000 * Math.random());
             if (tempi % 2 == 1) {
