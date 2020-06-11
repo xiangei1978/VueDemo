@@ -59,10 +59,11 @@
 }
 /* 淡入 */
 .a-fadein {
-  -webkit-animation-name: fadein;
-  -moz-animation-name: fadein;
-  -ms-animation-name: fadein;
-  animation-name: fadein;
+  -webkit-animation-name: fadein infinite linear;
+  -moz-animation-name: fadein infinite linear;
+  -ms-animation-name: fadein infinite linear;
+  animation-name: fadein infinite linear;
+  animation: fadein infinite; /* Safari and Chrome */
 }
 /* 淡入-从上 */
 .a-fadeinT {
@@ -70,6 +71,7 @@
   -moz-animation-name: fadeinT;
   -ms-animation-name: fadeinT;
   animation-name: fadeinT;
+  animation: fadeinT 2s infinite linear;
 }
 /* 淡入-从右 */
 .a-fadeinR {
@@ -350,7 +352,10 @@
 /* 淡入 */
 @-webkit-keyframes fadein {
   0% {
-    opacity: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -358,7 +363,10 @@
 }
 @-moz-keyframes fadein {
   0% {
-    opacity: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -366,7 +374,10 @@
 }
 @-ms-keyframes fadein {
   0% {
-    opacity: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     opacity: 1;
@@ -374,7 +385,10 @@
 }
 @keyframes fadein {
   0% {
-    opacity: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     opacity: 1;

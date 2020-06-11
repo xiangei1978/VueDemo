@@ -1,15 +1,24 @@
 <template>
   <div class="demo">
     <h1>{{msg}}</h1>
-    <h1>Flow Animate ++---+</h1>
+    <h1 class="a-fadeinT">Flow Animate ++---+</h1>
+    <input v-model="refreshTime" />
+    <button v-on:click="refreshAmimateTime">设置动画时间</button>
     <div style="position:relative;width:1500px;background-color:#FF0000;">
       <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
       <!-- <div id ="bk"  style = "background:url('图片的url');cursor:pointer ! important;width:100%;height:100%;border:no"> -->
-      <div style="width: 300px;height:200px;float:left;">
+      <div style="width: 300px;height:200px;float:left; background: #110a4b;">
+        <img
+          id="imgBK"
+          class="a-fadein"
+          style="position:absolute;left:0px; top:0px;width: 300px;height:200px;z-index = 1;"
+          alt="aa"
+          src="../../assets/kuang.png"
+        />
         <div
           id="myChart1"
-          style="width: 300px;height:200px;z-index = 1;"
-          class="fadeInDown animated toShow div-chart"
+          style="position:absolute;left:0px; top:0px;width: 300px;height:200px;z-index = 100;"
+          class="fadeInDown animated toShow"
         ></div>
       </div>
       <div style="width: 300px;height:200px;float:left;">
@@ -96,11 +105,11 @@
           class="fadeInDown animated toShow div-chart"
         ></div>
       </div>
-      <div style="width: 300px;height:200px;float:left;">
+      <div style="width: 300px;height:200px;float:left;" class="a-fadein">
         <div
           id="myChart14"
+          class="animated toShow div-chart"
           style="width: 300px;height:200px;z-index = 1;"
-          class="fadeInDown animated toShow div-chart"
         ></div>
       </div>
     </div>
@@ -117,28 +126,42 @@ export default {
   data() {
     return {
       msg1: "Welcome to Your Vue.js App",
-
+      refreshTime: 10,
       loadingIndexNum: -1, //正在渲染的组件数
       loadingArray: [
-        ["myChart1", 11],
-        ["myChart2", 3],
-        ["myChart4", 3],
-        ["myChart5", 4],
-        ["myChart3", 5],
+        ["myChart1", 1],
+        ["myChart2", 2],
+        ["myChart3", 3],
+        ["myChart4", 4],
+        ["myChart5", 5],
         ["myChart6", 6],
         ["myChart7", 7],
-        ["myChart10", 8],
-        ["myChart11", 9],
-        ["myChart8", 10],
-        ["myChart9", 10],
-        ["myChart12", 10],
-        ["myChart13", 10],
-        ["myChart14", 10]
+        ["myChart8", 8],
+        ["myChart9", 9],
+        ["myChart10", 10],
+        ["myChart11", 11],
+        ["myChart12", 12],
+        ["myChart13", 13],
+        ["myChart14", 14]
       ],
       unwatch: null
     };
   },
   mounted() {
+    // document
+    //   .getElementById("imgBK")
+    //   .style.setProperty("--animate-duration", "2s");
+    document
+      .getElementById("imgBK")
+      .style.setProperty("-webkit-animation-duration", "2s");
+    // document
+    //   .getElementById("imgBK")
+    //   .style.setProperty("webkit-animation-name", "fadein");
+
+    // document
+    //   .getElementById("imgBK")
+    //   .style.setProperty("animate-duration", "2s");
+
     this.unwatch = this.$watch(
       function() {
         return this.loadingIndexNum == 0;
@@ -162,7 +185,8 @@ export default {
             );
 
             let tempname = this.loadingArray[i][0];
-            let randomNum = parseInt(100 + 1000 * Math.random());
+            // let randomNum = parseInt(100 + 200 * Math.random());
+            let randomNum = 300;
             if (tempi % 2 == 1) {
               // this.draw(tempchart);
 
@@ -199,6 +223,16 @@ export default {
     this.loadingIndexNum = 0;
   },
   methods: {
+    refreshAmimateTime: function() {
+      document
+        .getElementById("imgBK")
+        .style.setProperty(
+          "-webkit-animation-duration",
+          this.refreshTime + "s"
+        );
+
+      console.log("动画时间设置为" + this.refreshTime + "s");
+    },
     goSleep(time) {
       return new Promise(resolve => setTimeout(resolve, time));
     },
@@ -765,7 +799,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* @import "../../css/myAnimate.css"; */
+@import "../../css/myAnimate.css";
+
 h3 {
   margin: 40px 0 0;
 }
