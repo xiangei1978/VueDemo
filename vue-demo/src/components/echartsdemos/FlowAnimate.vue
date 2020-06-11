@@ -2,6 +2,13 @@
   <div class="demo">
     <h1>{{msg}}</h1>
     <h1 class="a-fadeinT">Flow Animate ++---+</h1>
+    <img
+      id="imgArrow"
+      class="a-moveToR"
+      style="  z-index = 1;"
+      alt="aa"
+      src="../../assets/arrow.png"
+    />
     <input v-model="refreshTime" />
     <button v-on:click="refreshAmimateTime">设置动画时间</button>
     <div style="position:relative;width:1500px;background-color:#FF0000;">
@@ -126,7 +133,7 @@ export default {
   data() {
     return {
       msg1: "Welcome to Your Vue.js App",
-      refreshTime: 10,
+      refreshTime: 2,
       loadingIndexNum: -1, //正在渲染的组件数
       loadingArray: [
         ["myChart1", 1],
@@ -151,9 +158,8 @@ export default {
     // document
     //   .getElementById("imgBK")
     //   .style.setProperty("--animate-duration", "2s");
-    document
-      .getElementById("imgBK")
-      .style.setProperty("-webkit-animation-duration", "2s");
+    this.refreshAmimateTime();
+
     // document
     //   .getElementById("imgBK")
     //   .style.setProperty("webkit-animation-name", "fadein");
@@ -226,6 +232,12 @@ export default {
     refreshAmimateTime: function() {
       document
         .getElementById("imgBK")
+        .style.setProperty(
+          "-webkit-animation-duration",
+          this.refreshTime + "s"
+        );
+      document
+        .getElementById("imgArrow")
         .style.setProperty(
           "-webkit-animation-duration",
           this.refreshTime + "s"
@@ -879,6 +891,14 @@ a {
   -webkit-animation-fill-mode: both !important;
 }
 
+/* 箭头向右移动 */
+.a-moveToR {
+  -webkit-animation-name: moveToR infinite linear;
+  -moz-animation-name: moveToR infinite linear;
+  -ms-animation-name: moveToR infinite linear;
+  animation-name: moveToR infinite linear;
+  animation: moveToR infinite; /* Safari and Chrome */
+}
 /*中心旋转*/
 .coreRotate {
   animation-name: coreRotate;
@@ -1078,6 +1098,48 @@ a {
     transform: rotate(-5deg);
     -ms-transform: rotate(-5deg);
     -webkit-transform: rotate(-5deg);
+  }
+}
+
+/* 淡入-从上 */
+@-webkit-keyframes moveToR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(10px);
+  }
+}
+@-moz-keyframes moveToR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(10px);
+  }
+}
+@-ms-keyframes moveToR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(10px);
+  }
+}
+@keyframes moveToR {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(10px);
   }
 }
 /*动画-end*/
